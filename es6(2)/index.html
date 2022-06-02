@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+// class Mobile {
+
+
+//     constructor(b,bt) {
+
+//         this.brand=b;
+//         this.calling=true;
+//         this.battery=bt;
+//     }
+// }
+// let m1 = new Mobile("Iphpne","5000mAH")
+// console.log(m1)
+
+// function person(n,a){
+//     this.name=n;
+//     this.age=a;
+// }
+ 
+// let prs1= new person("raj",25)
+
+
+// let pr2= new person("rishi",25);
+// console.log(prs1);
+// console.log(pr2);
+
+
+class person{
+  
+    constructor(a,b)
+    {
+       this.length=0;
+       this.stack=[];
+
+    }
+push(el)
+{
+    this.stack[this.length]=el;
+    this.length++;
+}
+pop()
+{
+    this.stack.pop();
+    this.length--
+}
+top()
+{
+    return this.stack[this.length-1];
+}
+print()
+{
+    console.log(this.stack)
+}
+reverse()
+{
+    return this.stack.reverse()
+}
+size()
+{
+    return this.stack.length;
+}
+
+}
+let s1= new person();
+s1.push(1);
+s1.push(2);
+s1.push(3);
+s1.push(4);
+s1.push(10);
+s1.pop();
+s1.top();
+
+console.log(s1.size())
+
+</script>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIshi Youtube</title>
+    <script src="https://kit.fontawesome.com/b74451fed5.js" crossorigin="anonymous"></script>
+    <style>
+        #container{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-template-rows: auto;
+        grid-gap: 10px;
+        margin-top: 20px;
+       }
+       #navbar{
+        
+       
+        width: 100%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content:space-around;
+        background-color: #ffffff
+
+       }
+       #logo{
+          
+           width: 25%;
+           height: 90%;
+           display: flex;
+           align-items: center;
+
+       }
+       #searchbox{
+       
+           width: 45%;
+           height: 90%;
+           display: flex;
+           justify-content: space-around;
+           align-items: center;
+        }
+        #function{
+            
+           
+           width: 25%;
+           height: 90%;
+           display: flex;
+           justify-content: space-around;
+           align-items: center;
+
+        }
+        #input{
+            border: 0ch;
+            width: 70%;
+            height: 90%;
+            background-color: #f9dede;
+            color: black;
+            font-size: 20px;
+            border-radius: 5px;
+        }
+        #btn{
+           
+            width: 10%;
+            height: 100%;
+            display: flex;
+            
+            align-items: center;
+            gap: 10px;
+            background-color: #ffffff;
+        }
+        #img{
+            width:70%;
+            height: 70%;
+        }
+        #yulogo{
+            
+            width: 40px;
+            height: 30px;
+            margin-left: 25px;
+        }
+        h2{
+            margin-left: 5px;
+            font-style: inherit;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            
+        }
+        #btn1{
+            background-color: #ffffff;
+            border: 0ch;
+        }
+        #btn1:hover{
+            cursor: pointer;
+            
+        }
+        #div{
+            "box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+
+        }
+       
+        
+
+    </style>
+</head>
+<body>
+    
+    <div id="navbar">
+        <div id="logo">
+            <i id="bars" class="fa fa-bars" style="font-size:25px ; cursor: pointer;"></i>
+            <img id="yulogo" src="https://cdn-icons-png.flaticon.com/128/1384/1384060.png" alt="">
+            <h2>YouTube</h2>
+         
+        </div>
+        <div id="searchbox">
+
+         <input type="text" id="input" placeholder="Search">
+         <div id="btn">
+            <button id="btn1" onclick="search()">
+               <i class="fas fa-search" style="font-size:25px ;"></i>
+            
+            </button>
+         </div>
+         
+       </div>
+       <div id="function">
+           <i class="fas fa-video" style="font-size:25px ;cursor: pointer;"></i>
+           <i class="far fa-bell" style="font-size:25px;cursor: pointer;"></i>
+           <i class="far fa-user-circle" style="font-size:25px; cursor: pointer;"></i>
+
+       </div>
+    </div>
+
+    
+     <div id="container"></div>
+</body>
+</html>
+
+
+<script>
+   
+    let api_key="AIzaSyBIrNwfkyoVPANWa01nNF9obF46TMA8p0Y"
+    let  search= async() => {
+    let query=document.getElementById('input').value
+    let url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${query}&key=${api_key}`
+    
+    let res = await fetch(url);
+    let data = await res.json();
+    console.log(data);
+    showsearch(data.items)
+   
+}
+
+
+function showsearch(data)
+{   
+    
+    var container= document.getElementById("container")
+    container.innerHTML=""
+    data.forEach(function(ele,index) {
+        var div=document.createElement("div");
+        div.setAttribute("id","div")
+        
+        var iframe=document.createElement("iframe")
+        iframe.src=`https://www.youtube.com/embed/${ele.id.videoId}`;
+        iframe.allow="allowfullscreen"
+
+        var Title=document.createElement("h4");
+         Title.innerText=ele.snippet.title;
+        div.append(iframe,Title);
+        container.append(div);
+
+    });
+
+
+
+
+
+
+}
+
+
+// <iframe width="560"
+//  height="315" 
+//  src="https://www.youtube.com/embed/ApEeZa-49Rk" // vedio id
+//  title="YouTube video player" frameborder="0" 
+//  allow="accelerometer;
+//   autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+//  allowfullscreen>
+//     </iframe>
+
+</script>

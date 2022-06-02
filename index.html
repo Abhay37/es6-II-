@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+    
+</body>
+</html>
+<script>
+    let url ="http://www.omdbapi.com/?i=tt3896198&apikey=c81148e5"
+
+    async function getdata(){
+        try{
+            let res =await fetch(url)
+            let movies = await res.json();
+        
+             
+            console.log(movies.Title)
+             
+        }catch(err){
+            console.log('err')
+        }
+       
+    }
+    getdata();
+    append(movies.Title)
+    function append(){
+        var div = create.createElement("div")
+        data.forEach(function(elem) {
+            
+            var h3 = document.createElement("h3");
+            h3.innerText=elem.Title;
+
+            div.append(h3);
+            document.getElementById("container").append(div);
+        });
+    }
+</script>
